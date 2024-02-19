@@ -9,19 +9,9 @@ const tutorsList = [
             major: 'Japanese and Korean Studies',
             response: 100,
         },
-        availableTime: {
-            20: {
-                "5": 'AVAILABLE',
-                "5:30": 'AVAILABLE',
-                "6": 'AVAILABLE',
-                "6:30": 'AVAILABLE',
-              },
-              40: {
-                "5": 'AVAILABLE',
-                "6": 'AVAILABLE',
-              },
-        },
-        class: null
+        twenty: ['24-2-20-11','24-2-20-11.5','24-2-22-14','24-2-22-14.5'],
+        forty: ['24-2-20-11','24-2-22-7'],
+        class: []
     },
     {
         id:2,
@@ -31,19 +21,9 @@ const tutorsList = [
             major: 'Ethnicity, Race and Migration',
             response: 100,
         },
-        availableTime: {
-            20: {
-                "6": 'AVAILABLE',
-                "6:30": 'AVAILABLE',
-                "7": 'AVAILABLE',
-                "7:30": 'AVAILABLE',
-              },
-              40: {
-                "6": 'AVAILABLE',
-                "7": 'AVAILABLE',
-              },
-        },
-        class: null
+        twenty: ['24-2-22-14','24-2-22-14.5','24-2-23-7',],
+        forty: ['24-2-22-14','24-2-23-7'],
+        class: []
     },
     { 
         id:3,
@@ -53,17 +33,9 @@ const tutorsList = [
             major: 'Finance',
             response: 0,
         },
-        availableTime: {
-            20: {
-                "6": 'AVAILABLE',
-                "7": 'AVAILABLE',
-                "8": 'AVAILABLE',
-            },
-            40: {
-                "8": 'AVAILABLE',
-            },
-        },
-        class: null
+        twenty: ['24-2-23-10','24-2-23-10.5'],
+        forty: ['24-2-23-10'],
+        class: []
     },
     {
         id:4,
@@ -73,17 +45,9 @@ const tutorsList = [
             major: 'Engineering',
             response: 100,
         },
-        availableTime: {
-            20: {
-                "6": 'AVAILABLE',
-                "7": 'AVAILABLE',
-                "8": 'AVAILABLE',
-            },
-            40: {
-                "8": 'AVAILABLE',
-            },
-        },
-        class: null
+        twenty: ['24-2-21-18','24-2-21-18.5'],
+        forty: ['24-2-21-18'],
+        class: []
     },
     {
         id:5,
@@ -93,17 +57,9 @@ const tutorsList = [
             major: 'Paleontology',
             response: 80,
         },
-        availableTime: {
-            20: {
-                "6": 'AVAILABLE',
-                "10": 'AVAILABLE',
-            },
-            40: {
-                "6": 'AVAILABLE',
-                "10": 'AVAILABLE',
-            },
-        },
-        class: null
+        twenty: ['24-2-21-18','24-2-21-18.5','24-2-23-7','24-2-23-7.5'],
+        forty: ['24-2-21-18','24-2-23-7'],
+        class: []
     },
     {
         id:6,
@@ -113,17 +69,9 @@ const tutorsList = [
             major: 'Public Health',
             response: 100,
         },
-        availableTime: {
-            20: {
-                "6": 'AVAILABLE',
-                "7": 'AVAILABLE',
-            },
-            40: {
-                "6": 'AVAILABLE',
-                "7": 'AVAILABLE',
-            },
-        },
-        class: null
+        twenty: ['24-2-21-8','24-2-21-8.5','24-2-23-7','24-2-23-7.5'],
+        forty: ['24-2-21-8','24-2-23-7'],
+        class: []
     },
 ]
 
@@ -131,9 +79,54 @@ const tutorSlice = createSlice({
     name: 'tutors',
     initialState: tutorsList,
     reducers: {
-        
+        tutorRegiClass: (state, action) => {
+            const [duration, time, tutorID, tuteeID] = action.payload;
+
+            const tutorIndex = state.findIndex(item => item.id === tutorID);
+            
+            state[tutorIndex].class = [
+                ...state[tutorIndex].class,
+                {
+                'duration': duration,
+                'time': time,
+                'tuteeD': tuteeID
+                }
+            ];
+        },
+        tutorRemoveClass: (state, action) => {
+            const {duration, time, tutorID, tuteeID} = action.payload;
+
+            const tutorIndex = state.findIndex(item => item.id === tutorID);
+
+            state[tutorIndex].class = state[tutorIndex].class.filter(item => 
+                !(item.duration == duration 
+                    && item.time == time 
+                    && item.tuteeID == tuteeID ));
+            
+         },
+         tutorAddTime: (state, action) => {
+            const {duration, time, tutorID} = action.payload;
+
+            const tutorIndex = state.findIndex(item => item.id === tutorID);
+
+            if(duration === '20')
+                state[tutorIndex].twenty = [...state[tutorIndex].twenty, time];
+            else
+                state[tutorIndex].forty = [...state[tutorIndex].forty, time];
+
+         },
+         tutorRemoveTime: (state, action) => {
+            const [duration, time, tutorID] = action.payload;
+
+            const tutorIndex = state.findIndex(item => item.id === tutorID);
+
+            if(duration === '20')
+                state[tutorIndex].twenty = state[tutorIndex].twenty.filter(item => item !== time);
+            else
+                state[tutorIndex].forty = state[tutorIndex].forty.filter(item => item !== time);
+         }
     }
 });
 
-// export const {use20Ticket, use40Ticket} = userSlice.actions;
+export const {tutorRegiClass, tutorRemoveClass, tutorAddTime, tutorRemoveTime} = tutorSlice.actions;
 export default tutorSlice.reducer;

@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+1. 사용한 기술 스택
 
-## Getting Started
+Next.js, tailwind.css, redux-toolkit
 
-First, run the development server:
+2. 구현 범위
 
-```bash
+1) 테스트 계정 및 수업권 
+    - 리덕스를 통해 user(테스트 계정) 상태 관리
+
+    - userSlice
+
+2) 튜터 
+    - 리덕스를 통해 tutors 상태 관리
+    
+    - tutorSlice
+
+3) 세부 기능
+    - 주간 캘린더에서 유저는 원하는 시간을 클릭할 수 있습니다.
+        * 현재 시간 + 2부터 시간을 선택할 수 있습니다.
+
+    - 원하는 시간을 클릭 시 해당 시간에 수업이 가능한 튜터 리스트가 나타납니다.
+        * 최대 5명까지 나타납니다.
+
+    - 상단 select를 통해 유저는 20/40 수업권 변경이 가능합니다.
+        * 선택한 수업의 duration에 따라 표시되는 뷰의 범위가 다릅니다.
+    
+    - 선택 완료된 수업을 클릭하면 수업을 취소할 수 있습니다.
+
+3. 개략적인 흐름
+
+1) 유저가 캘린더에서 특정 날짜를 클릭하면 해당 날짜의 주간 캘린더가 보여집니다. (default: 오늘)
+2) 주간 캘린더에는 튜터들이 설정한 수업 가능 시간대에 따라 튜터 선택 버튼이 나타납니다. 
+2-1) 유저가 선택한 수업권(20/40) 종류에 따라 주간 캘린더에 예약 가능한 버튼이 바뀌게 됩니다. (default: 20)
+3) 유저가 주간 캘린더에서 특정 버튼을 클릭하면 해당 시간에 수업이 가능한 튜터들이 나타납니다.
+4) 유저가 튜터를 선택하면 해당 시간대는 선택 완료 버튼이 나타납니다.
+4-1) 만약, 사용 가능한 수업권이 없다면 튜터 클릭 시 수업권을 구매하라는 alert가 발생합니다.
+4-2) 해당 시간대에는 유저가 더이상 튜터를 선택할 수 없습니다.
+4-3) 해당 시간대에는 다른 수업권에서도 튜터를 선택할 수 없습니다.
+5) 선택 완료 버튼을 클릭하면 유저는 수업을 취소할 수 있습니다.
+5-1) 유저는 취소된 수업의 시간대를 다시 선택할 수 있습니다.
+ 
+
+
+
+3. 실행 방법
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+http://localhost:3000/

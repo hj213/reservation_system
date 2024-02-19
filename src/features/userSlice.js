@@ -11,28 +11,53 @@ const userSlice = createSlice({
         tickets: [
             { 
                 id: 1, 
-                duration: 20, 
+                duration: '20', 
                 status: 'UNUSED' 
             },
             { 
                 id: 1, 
-                duration: 40, 
+                duration: '40', 
                 status: 'UNUSED' 
             },
         ],
-        class: null,
+        class: [],
         
     },
     reducers: {
-        use20Ticket: (state) => {
-            state.tickets[0].status = 'USED'
+        useTicket: (state, action) => {
+            const duration = action.payload;
+            const ticketIndex = state.tickets.findIndex((item)=> item.duration === duration);
+            state.tickets[ticketIndex].status = "USED";
+
+        }, 
+        unUseTicket: (state, action) => {
+            const duration = action.payload;
+            const ticketIndex = state.tickets.findIndex((item)=> item.duration === duration);
+            state.tickets[ticketIndex].status = "UNUSED";
+
         },
-        use40Ticket: (state) => {
-            state.tickets[1].status = 'USED'
+        regiClass: (state, action) => {
+            const [duration, time, tutorID] = action.payload;
+
+            state.class = [
+                ...state.class,
+                {
+                'duration': duration,
+                'time': time,
+                'tutorID': tutorID
+                }
+            ]
         },
+        removeClass: (state, action) => {
+            const {duration, time, tutorID} = action.payload;
+
+            state.class = state.class.filter(item => 
+                !(item.duration === duration && item.time === time && item.tutorID === tutorID)
+            );
+        }
 
     }
 });
 
-export const {use20Ticket, use40Ticket} = userSlice.actions;
+export const {useTicket, unUseTicket, regiClass,removeClass} = userSlice.actions;
 export default userSlice.reducer;
