@@ -198,7 +198,6 @@ export default function Home() {
   //선택한 수업 클랙했을 때 취소하는 과정
   useEffect(()=>{
     if(cancel){
-      console.log(cancel)
       const tutorIndex = tutors.findIndex(item => item.id === cancel.tutorID);
       const tutorName = tutors[tutorIndex].name;
       
@@ -255,7 +254,7 @@ ${tutorName}
   };
 
   //튜터 선택
-  const handleTutor = (id) => {
+  const handleTutorClick = (id) => {
 
     if(checkTicket() > 0 ){
       setSelectedTutor(id);
@@ -470,7 +469,7 @@ ${tutorName}
                       </div>
                       
                       {availableTutors.map((tutor,index) => (
-                        <button key={index} value={tutor.id} onClick={()=>{handleTutor(tutor.id);}} className="flex flex-col space-y-2 w-full h-44 pl-5 border-b hover:bg-slate-50">
+                        <button key={index} value={tutor.id} onClick={()=>{handleTutorClick(tutor.id);}} className="flex flex-col space-y-2 w-full h-44 pl-5 border-b hover:bg-slate-50">
                           <div className="mt-3 text-lg font-semibold">{tutor.name}</div>
                           <div className="text-sm font-normal text-slate-600">{tutor.info.school}</div>
                           <div className="text-xs font-normal text-slate-400">{tutor.info.major}</div>
