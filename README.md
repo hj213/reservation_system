@@ -56,4 +56,4 @@
 
 #### 5. 실행 이미지
 
-<img width="1507" alt="스크린샷 2024-04-15 오후 8 57 36" src="https://github.com/hj213/ringle_assignment/assets/79979227/bd0eb62a-615c-495c-b5fe-693eebb71a3a">
+<img width="1508" alt="스크린샷 2024-07-26 오후 3 37 44" src="https://github.com/user-attachments/assets/5c747d5d-71db-453f-bc51-7357b983570a">
