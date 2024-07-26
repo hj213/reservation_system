@@ -52,3 +52,8 @@
     npm run dev
     
     http://localhost:3000/
+
+
+#### 5. 실행 이미지
+
+<img width="1507" alt="스크린샷 2024-04-15 오후 8 57 36" src="https://github.com/hj213/ringle_assignment/assets/79979227/bd0eb62a-615c-495c-b5fe-693eebb71a3a">
