@@ -8,9 +8,6 @@ import 'react-day-picker/dist/style.css';
 import { ko } from 'date-fns/locale';
 import moment from 'moment';
 
-import Image from 'next/image';
-import Logo from '../image/logo.png';
-
 import { regiClass,removeClass, useTicket, unUseTicket} from "@/features/userSlice";
 import { tutorAddTime, tutorRegiClass,tutorRemoveClass, tutorRemoveTime } from "@/features/tutorSlice";
 
@@ -291,12 +288,12 @@ ${tutorName}
     const limit = new Date().setHours(today.getHours() + 2);
     const timeKey = Object.keys(time)[0];
     const dateOfTutor = new Date(2000 + Number(year), Number(month) - 1, Number(date), Number(hour));
-  
+
     return dateOfTutor >= limit 
     && hour === timeKey 
     && Number(year) + 2000 === selectedWeek[index].getFullYear() 
     && Number(month) - 1 === selectedWeek[index].getMonth() 
-    && dateOfTutor.getDate() === selectedWeek[index].getDate();
+    && Number(date) === selectedWeek[index].getDate();
   };
 
   const checkReserved = (item, time, index) => {
@@ -330,8 +327,7 @@ ${tutorName}
       <div>
         {/* top */}
         <div className="flex items-center gap-x-7 h-16 bg-slate-50 border-b border-slate-200">
-          <button className="ml-7 text-xs text-violet-600 "> &lt; 나가기 </button>
-          <div className="w-7"><Image src={Logo} alt='logo'></Image></div>
+          <button className="ml-7 text-xs text-blue-600 "> &lt; 나가기 </button>
           <div className="font-bold text-slate-600"> 수업 예약 </div>
           <div className="text-sm text-slate-600"> STEP 1. 튜터 및 시간 선택 </div>
           <div className="flex-grow text-sm">
@@ -342,7 +338,7 @@ ${tutorName}
           </div>
 
           <div className="text-sm mr-[-15px] text-slate-600">예약 신청한 수업</div>
-          <div className="text-sm text-violet-600">{userClass ? userClass.length : 0}</div>
+          <div className="text-sm text-blue-600">{userClass ? userClass.length : 0}</div>
           <button className="w-32 h-10 mr-7 rounded-md bg-slate-200 text-sm text-slate-400">다음</button>
         </div>
 
@@ -368,7 +364,7 @@ ${tutorName}
                     <tr>
                       <th></th>
                         <th>
-                          <button onClick={handletody} className="w-2/4 mt-4 py-1 text-xs font-normal text-violet-600 rounded-full border border-violet-600">오늘</button>
+                          <button onClick={handletody} className="w-2/4 mt-4 py-1 text-xs font-normal text-blue-600 rounded-full border border-blue-600">오늘</button>
                         </th>
                         <th></th><th></th><th></th><th></th><th></th><th></th>
                       </tr>
@@ -378,14 +374,14 @@ ${tutorName}
                       {selectedWeek.map((day) => (
                         <th key={day} 
                           className={`pt-4 text-xs font-normal 
-                          ${(day.getMonth() === today.getMonth() && day.getDate() === today.getDate() && day.getDay() === today.getDay() ? 'text-violet-600':(day.getDay() ===0 | day.getDay() ===6 ? 'text-red-500' : '')) }`
+                          ${(day.getMonth() === today.getMonth() && day.getDate() === today.getDate() && day.getDay() === today.getDay() ? 'text-blue-600':(day.getDay() ===0 | day.getDay() ===6 ? 'text-red-500' : '')) }`
                         }>{daysOfWeek[day.getDay()]}</th>
                       ))}
                     </tr>
                     <tr>
                       <th></th>
                       {selectedWeek.map((day,index) => (
-                          <th key={day} className={`h-12 text-xl font-semibold ${day.getDate() === today.getDate() ? 'text-violet-600': (index === 0  | index === 6 ? 'text-red-500' : '')
+                          <th key={day} className={`h-12 text-xl font-semibold ${day.getDate() === today.getDate() ? 'text-blue-600': (index === 0  | index === 6 ? 'text-red-500' : '')
                         }`}>{day.getDate()}</th>
                       ))}
                     </tr>
@@ -400,7 +396,7 @@ ${tutorName}
                             selectedTicket === '20' && available20 && available20.length > 0 ? (
                               available20.map((item, index) => (
                                 checkAvailability(item, time, dIndex) ? (
-                                  <button onClick={handleSelectTime} key={index} value={item} className={`w-full h-6 mt-[-4px] align-top text-xs text-gray-500 rounded-md border border-violet-600 bg-white hover:bg-violet-400 hover:text-white hover:border-violet-400 active:bg-violet-600 active:text-white ${click && item === selectedTime ? 'ring-violet-300 drop-shadow-md ring' : ''}`}>
+                                  <button onClick={handleSelectTime} key={index} value={item} className={`w-full h-6 mt-[-4px] align-top text-xs text-gray-500 rounded-md border border-blue-600 bg-white hover:bg-blue-400 hover:text-white hover:border-blue-400 active:bg-blue-600 active:text-white ${click && item === selectedTime ? 'ring-blue-300 drop-shadow-md ring' : ''}`}>
                                     👤 튜터 선택
                                   </button>
                                 ) : null
@@ -412,7 +408,7 @@ ${tutorName}
                               available40.map((item, index) => (
                                 checkAvailability(item, time, dIndex)? (
                                   <div className="relative h-full">
-                                    <button onClick={handleSelectTime} key={index} value={item} className={`w-full h-14 absolute text-xs text-gray-500 rounded-md border border-violet-600 bg-white  hover:bg-violet-400 hover:text-white hover:border-violet-400 active:bg-violet-600 active:text-white ${click && item === selectedTime ? 'ring-violet-300 drop-shadow-md ring' : ''}`}>
+                                    <button onClick={handleSelectTime} key={index} value={item} className={`w-full h-14 absolute text-xs text-gray-500 rounded-md border border-blut-600 bg-white  hover:bg-blue-400 hover:text-white hover:border-blue-400 active:bg-blue-600 active:text-white ${click && item === selectedTime ? 'ring-blue-300 drop-shadow-md ring' : ''}`}>
                                       👤 튜터 선택
                                     </button>
                                   </div>
@@ -425,12 +421,12 @@ ${tutorName}
                               userClass.map((item, index)=>(
                                 checkReserved(item, time, dIndex) ? (
                                   item.duration === '20' ? (
-                                    <button key={index} value={item.time} onClick={()=>setCancel(item)} className="w-full h-6 mt-[-4px] align-top text-xs text-white rounded-md border border-violet-600 bg-violet-600 focus:bg-violet-600 focus:text-white active:bg-violet-700 active:text-white hover:outline-none hover:ring hover:ring-violet-300">
+                                    <button key={index} value={item.time} onClick={()=>setCancel(item)} className="w-full h-6 mt-[-4px] align-top text-xs text-white rounded-md border border-blue-600 bg-blue-600 focus:bg-blue-600 focus:text-white active:bg-blue-700 active:text-white hover:outline-none hover:ring hover:ring-blue-300">
                                       ▫️ 선택 완료
                                     </button>
                                   ) : (
                                     <div className="relative h-full">
-                                      <button key={index} value={item.time} onClick={()=>setCancel(item)} className="w-full h-14 absolute text-xs text-white rounded-md border border-violet-600 bg-violet-600  focus:bg-violet-600 focus:text-white active:bg-violet-700 active:text-white hover:outline-none hover:ring hover:ring-violet-300">
+                                      <button key={index} value={item.time} onClick={()=>setCancel(item)} className="w-full h-14 absolute text-xs text-white rounded-md border border-blue-600 bg-blue-600  focus:bg-blue-600 focus:text-white active:bg-blue-700 active:text-white hover:outline-none hover:ring hover:ring-blue-300">
                                       ▫️ 선택 완료
                                       </button>
                                     </div>
@@ -459,7 +455,7 @@ ${tutorName}
                     <div className="flex h-12 pl-3 mt-4 items-center text-base font-normal"> 
                       튜터 직접 선택 
                     </div>
-                    <div className="flex h-14 pl-3 mt-4 items-center text-sm font-normal text-violet-600 bg-slate-100 border-b border-violet-600"> 
+                    <div className="flex h-14 pl-3 mt-4 items-center text-sm font-normal text-blue-600 bg-slate-100 border-b border-blue-600"> 
                       <div>예약 가능 </div>
                       <div className="pl-1">({availableTutors.length})</div>
                     </div >

@@ -9,8 +9,8 @@ const tutorsList = [
             major: 'Japanese and Korean Studies',
             response: 100,
         },
-        twenty: ['24-2-20-11','24-2-20-11.5','24-2-22-14','24-2-22-14.5'],
-        forty: ['24-2-20-11','24-2-22-7'],
+        twenty: ['24-7-30-11','24-7-30-11.5','24-7-22-14','24-7-22-14.5'],
+        forty: ['24-7-30-11','24-7-27-7'],
         class: []
     },
     {
@@ -21,8 +21,8 @@ const tutorsList = [
             major: 'Ethnicity, Race and Migration',
             response: 100,
         },
-        twenty: ['24-2-22-14','24-2-22-14.5','24-2-23-7',],
-        forty: ['24-2-22-14','24-2-23-7'],
+        twenty: ['24-7-29-14','24-7-29-14.5','24-7-29-7',],
+        forty: ['24-7-29-14','24-7-29-7'],
         class: []
     },
     { 
@@ -33,8 +33,8 @@ const tutorsList = [
             major: 'Finance',
             response: 0,
         },
-        twenty: ['24-2-23-10','24-2-23-10.5'],
-        forty: ['24-2-23-10'],
+        twenty: ['24-7-29-14','24-7-29-14.5'],
+        forty: ['24-7-30-10'],
         class: []
     },
     {
@@ -45,8 +45,8 @@ const tutorsList = [
             major: 'Engineering',
             response: 100,
         },
-        twenty: ['24-2-21-18','24-2-21-18.5'],
-        forty: ['24-2-21-18'],
+        twenty: ['24-7-25-18','24-7-25-18.5'],
+        forty: ['24-7-25-18'],
         class: []
     },
     {
@@ -57,20 +57,8 @@ const tutorsList = [
             major: 'Paleontology',
             response: 80,
         },
-        twenty: ['24-2-21-18','24-2-21-18.5','24-2-23-7','24-2-23-7.5'],
-        forty: ['24-2-21-18','24-2-23-7'],
-        class: []
-    },
-    {
-        id:6,
-        name: 'Monica',
-        info:{
-            school: 'New York University',
-            major: 'Public Health',
-            response: 100,
-        },
-        twenty: ['24-2-21-8','24-2-21-8.5','24-2-23-7','24-2-23-7.5'],
-        forty: ['24-2-21-8','24-2-23-7'],
+        twenty: ['24-7-25-18','24-7-25-18.5','24-7-25-7','24-7-25-7.5'],
+        forty: ['24-7-25-18','24-7-25-7'],
         class: []
     },
 ]
